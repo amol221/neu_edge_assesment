@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Inventory</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Product Inventory</h1>
+    <hr>
+
+    <!--buttons -->
+    <div class="actions mb-4">
+        <a href="/generate" class="btn btn-primary">Generate Products</a>
+        <a href="/sort_name" class="btn btn-info">Sort by Product Name</a>
+        <a href="/sort_stock_desc" class="btn btn-warning">Sort by Stock (Descending)</a>
+        <a href="/reduce_stock" class="btn btn-danger">Reduce Stock by 2</a>
+        <a href="/increase_even" class="btn btn-success">Increase Even Products by 2</a>
+    </div>
+
+    <!-- products -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Stock On Hand</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products.items %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock_on_hand }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination controls -->
+    <div class="pagination">
+        <ul class="pagination">
+            {% if products.has_prev %}
+                <li class="page-item"><a class="page-link" href="?page={{ products.prev_num }}">&laquo; Previous</a></li>
+            {% endif %}
+            {% if products.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ products.next_num }}">Next &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
